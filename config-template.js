@@ -1,16 +1,20 @@
 const psql = {
   user: 'username',
-  host: 'localhost',
+  host: 'host',
   database: 'database',
   password: 'password',
   port: 5432,
 }
 
-const SCHEMANAME = 'schema'
-const TABLENAME = 'table'
+const database = {
+  schema: 'schema',
+  table: 'table',
+}
+
+const INTERVAL = 10000
 
 module.exports = {
-  psql: psql,
-  schema: SCHEMANAME,
-  table: TABLENAME
+  psql,
+  database,
+  interval: INTERVAL,
 }
