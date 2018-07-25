@@ -7,13 +7,12 @@ const [SCHEMA, TABLE] = [config.database.schema, config.database.table]
 const geojsonConvert = async (req, res) => {
   const pool = new Pool(config.psql)
 
-  const queryres = await pool.query(`SELECT * FROM ${SCHEMA}.${TABLE}`)
+  const queryres = await pool.query(`SELECT * FROM ${SCHEMA}.${TABLE} WHERE stat != '0'`)
   const geo = queryres.rows.map((row) => {
-    const latitude = parseFloat(row.lat) / 100
-    const longitude = parseFloat(row.lon) / 100
+    const latitude = parseFloat(row.lat)/100
+    const longitude = parseFloat(row.lon)/100
     const data = row.stat.split('-')
     const pm25 = parseInt(data[0].substring(5, data[0].length))
-    console.log(pm25);
     return { 
       type: "Feature", 
       properties: { 

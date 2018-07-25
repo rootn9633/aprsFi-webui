@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
   })
 
   // you can also use async/await
-  const queryres = await pool.query("SELECT * FROM gps WHERE stat = '1'")
+  const queryres = await pool.query("SELECT * FROM gps WHERE stat != '0'")
   console.log(queryres.rows);
   const geo = queryres.rows.map((row) => {
     const latitude = parseFloat(row.lat) / 100
